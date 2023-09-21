@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/19 22:32:45 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:46:20 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 #ifndef INT_MAX
 # define INT_MAX 2147483647
 #endif
+
+# define MAX_FILO 200
 
 typedef enum e_status
 {
