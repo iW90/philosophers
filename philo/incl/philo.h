@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/21 17:46:20 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:51:57 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,9 @@ typedef enum e_bool
 	TRUE = 1
 }	t_bool;
 
-int		ft_isblank(int c);
-int		ft_isdigit(int c);
-int		ft_unsigned_atoi(char *str);
+
+
+
+t_bool	is_input_valid(char **data, int	size);
 
 #endif

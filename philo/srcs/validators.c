@@ -6,13 +6,35 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 21:31:49 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/21 17:45:01 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/21 17:51:45 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-t_bool	is_str_digit(char *str)
+static int	ft_isdigit(int c)
+{
+	return ((unsigned)c - '0' < 10);
+}
+
+static int	ft_unsigned_atoi(char *str)
+{
+	unsigned int	number;
+	int				i;
+
+	i = 0;
+	number = 0;
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	{
+		number = number * 10 + (str[i] - '0');
+		i++;
+	}
+	if (number > INT_MAX)
+		return (-1);
+	return ((int)number);
+}
+
+static t_bool	is_str_digit(char *str)
 {
 	int	i;
 
