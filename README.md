@@ -18,7 +18,7 @@ O problema é garantir que os filósofos possam comer de maneira segura, evitand
 
 ## Philosophers
 
-Argumentos aceitos:
+Argumentos:
 
   - **number_of_philosophers**: O número de filósofos e também o número de garfos.
   - **time_to_die** (em milissegundos): Se um filósofo não iniciar a refeição dentro desse tempo desde o início da última refeição ou desde o início da simulação, ele morre.
