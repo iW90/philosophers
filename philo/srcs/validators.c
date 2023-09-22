@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 21:31:49 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/21 17:51:45 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/21 22:07:12 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_isdigit(int c)
 	return ((unsigned)c - '0' < 10);
 }
 
-static int	ft_unsigned_atoi(char *str)
+int	atoui(char *str)
 {
 	unsigned int	number;
 	int				i;
@@ -34,18 +34,18 @@ static int	ft_unsigned_atoi(char *str)
 	return ((int)number);
 }
 
-static t_bool	is_str_digit(char *str)
+static t_bool	has_fake_invite(char *invite)
 {
 	int	i;
 
 	i = -1;
-	while (str[++i])
-		if (!ft_isdigit(av[i]))
+	while (invite[++i])
+		if (!ft_isdigit(invite[i]))
 			return (FALSE);
 	return (TRUE);
 }
 
-t_bool	is_input_valid(char **data, int	size)
+void	validate_invites(char **data, int size)
 {
 	int	i;
 	int	number;
@@ -53,12 +53,18 @@ t_bool	is_input_valid(char **data, int	size)
 	i = -1;
 	while (++i < size)
 	{
-		if (!is_str_digit(data[i]))
-			return (FALSE);
-		number = ft_unsigned_atoi(data[i]);
-		if ((i == 1 && (number <= 0 || number > MAX_PHILOS)) || \
-			(i >= 2 && number < 0))
-			return (FALSE);
+		if (!has_fake_invite(data[i]))
+			end_dinner(\
+		"Some invitations are fake. Only numeric digits are accepted", 1);
+		number = atoui(data[i]);
+		if (i == 1 && number <= 0)
+			end_dinner(\
+		"At least one philosopher needs to have accepted the invitation", 1);
+		if (i == 1 && number > MAX_PHILOS)
+			end_dinner(\
+		"There are only two hundred chairs, invite fewer philosophers", 1);
+		if (i >= 2 && number < 0)
+			end_dinner(\
+		"Take as much time as you need, as long as it's greater than zero", 1);
 	}
-	return (TRUE)
 }

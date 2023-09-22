@@ -6,7 +6,7 @@
 #    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/09/21 17:52:19 by inwagner         ###   ########.fr        #
+#    Updated: 2023/09/21 22:00:55 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ CFLAGS		:=	-Wall -Wextra -Werror -g -I $(HDR_DIR)
 
 # Source files
 FTS			:=	main.c \
+				exit.c \
+				parser.c \
+				utils.c \
 				validators.c
 
 # Object files

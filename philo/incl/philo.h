@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/21 17:51:57 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/21 22:16:16 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # include <sys/time.h>
 # include <stdbool.h>
 
-#ifndef INT_MAX
-# define INT_MAX 2147483647
-#endif
+# ifndef INT_MAX
+#  define INT_MAX 2147483647
+# endif
 
-# define MAX_FILO 200
+# define MAX_PHILOS 200
 
 typedef enum e_status
 {
@@ -43,9 +43,29 @@ typedef enum e_bool
 	TRUE = 1
 }	t_bool;
 
+typedef struct s_philo
+{
+	int			index;
+	pthread_t	*thread;
+	t_status	status;
+}				t_philo;
 
+typedef struct s_butler
+{
+	int			total_philos;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			total_meals;
+	t_philo		**philos;
+}				t_butler;
 
+t_butler	*call_butler(void);
+int			atoui(char *str);
+void		validate_invites(char **data, int size);
+void		instruct_the_butler(char **info, int len);
+void		put_chairs(int total);
+int			end_dinner(char *msg, int error);
 
-t_bool	is_input_valid(char **data, int	size);
 
 #endif
