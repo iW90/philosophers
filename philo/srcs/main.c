@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/21 21:59:08 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/21 22:45:07 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av)
 		end_dinner("The number of arguments should be four or five", -1);
 	validate_invites(++av, --ac);
 	instruct_the_butler(av, ac);
-	put_chairs(--av, call_butler()->total_philos);
+	put_forks(call_butler()->total_philos);
 
 	return(end_dinner("The dinner was delicious!", 0));
 }

@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:11:24 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/21 22:17:34 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/21 22:43:07 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,32 +25,32 @@ void	instruct_the_butler(char **info, int len)
 		james->total_meals = atoui(info[4]);
 }
 
-static void	clean_chairs(t_philo **chair, int total)
+static void	clean_forks(t_philo **fork, int total)
 {
 	int	i;
 
 	i = -1;
 	while (++i < total)
-		chair[i] = NULL;
+		fork[i] = NULL;
 }
 
-void	put_chairs(int total)
+void	put_forks(int total)
 {
-	t_philo		**chairs;
+	t_philo		**forks;
 	int			i;
 
-	chairs = NULL;
-	chairs = malloc(sizeof(t_philo) * total + 1);
-	if (!chairs)
-		end_dinner("We don't have enough chairs.", 2);
-	call_butler()->philos = chairs;
-	clean_chairs(chairs, total);
+	forks = NULL;
+	forks = malloc(sizeof(t_philo) * total + 1);
+	if (!forks)
+		end_dinner("We don't have enough forks.", 2);
+	call_butler()->forks = forks;
+	clean_forks(forks, total);
 	i = -1;
 	while (++i < total)
 	{
-		chairs[i] = malloc(sizeof(t_philo));
-		if (!chairs[i])
-			end_dinner("We don't have enough chairs.", 2);
-		chairs[i] = (t_philo *){0};
+		forks[i] = malloc(sizeof(t_philo));
+		if (!forks[i])
+			end_dinner("We don't have enough forks.", 2);
+		forks[i] = (t_philo *){0};
 	}
 }
