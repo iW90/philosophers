@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:11:24 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/23 19:21:33 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/23 20:36:48 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,22 @@
 
 int	set_table(int total)
 {
-	t_plate	**table;
-	t_plate	*plate;
-	int		i;
+	t_plate		**table;
+	t_plate		*plate;
+	pthread_t	*philo;
+	int			i;
 
 	table = malloc(sizeof(t_plate *) * total);
-	if (!table)
+	plate = malloc(sizeof(t_plate) * total);
+	philo = malloc(sizeof(pthread_t) * total);
+	if (!table || !plate || !philo)
 		return (end_dinner(2));
 	call_butler()->table = table;
-	plate = malloc(sizeof(t_plate) * total);
-	if (!plate)
-		return (end_dinner(2));
 	i = -1;
 	while (++i < total)
 	{
-		plate[i] = (t_plate){0};
+		philo[i] = (pthread_t){0};
+		plate[i].philo = &philo[i];
 		table[i] = &plate[i];
 	}
 	return (0);
