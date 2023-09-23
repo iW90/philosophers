@@ -6,7 +6,7 @@
 #    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/09/21 22:00:55 by inwagner         ###   ########.fr        #
+#    Updated: 2023/09/23 19:01:13 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ CFLAGS		:=	-Wall -Wextra -Werror -g -I $(HDR_DIR)
 FTS			:=	main.c \
 				exit.c \
 				parser.c \
+				start.c \
 				utils.c \
 				validators.c
 
@@ -49,5 +50,8 @@ fclean:	clean
 	@[ -f ./$(NAME) ] && rm $(NAME) && echo $(NAME) cleaned ||  [ -f Makefile ]
 
 re: fclean all
+
+val: re
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} 2 2 2 2 || echo ""
 
 .PHONY: all clean fclean re

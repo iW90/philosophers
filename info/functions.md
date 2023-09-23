@@ -28,5 +28,4 @@
   - pthread_t **\*thread**: endereço da thread;
   - const pthread_attr_t **\*attr**: (ponteiro opcional, nullable) configuração da thread;
   - void **\*(\*start_routine)(void \*)**: ponteiro para função executada assim que a thread for criada.
-  - void **\*arg**: Argumento passado para a função start_routine quando a thread for criada.
-
+  - void **\*arg**: Argumento passado para a função acima quando a thread for criada.

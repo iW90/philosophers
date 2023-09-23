@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   start.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/21 18:11:24 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/23 19:21:33 by inwagner         ###   ########.fr       */
+/*   Created: 2023/09/23 18:09:20 by inwagner          #+#    #+#             */
+/*   Updated: 2023/09/23 19:36:05 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	set_table(int total)
+void *philosopher(void *arg)
 {
-	t_plate	**table;
-	t_plate	*plate;
-	int		i;
+	(void)arg;
+	printf("Calaio\n");
+	return (NULL);
+}
 
-	table = malloc(sizeof(t_plate *) * total);
-	if (!table)
-		return (end_dinner(2));
-	call_butler()->table = table;
-	plate = malloc(sizeof(t_plate) * total);
-	if (!plate)
-		return (end_dinner(2));
-	i = -1;
-	while (++i < total)
+int	accommodate_guests(t_plate **table, int total)
+{
+	while (--total)
 	{
-		plate[i] = (t_plate){0};
-		table[i] = &plate[i];
+		table[total]->id = total;
+		printf("Teste1: %i\n", table[total]->id);
+		printf("Teste2: %p\n", table[total]->philo);
+		if (pthread_create(table[total]->philo, NULL, philosopher, &table[total]->id))
+			return (end_dinner(5));
 	}
 	return (0);
 }

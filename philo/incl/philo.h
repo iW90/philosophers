@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/23 15:06:40 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/23 18:27:54 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ typedef enum e_status
 	EATING = 1,
 	SLEEPING = 2,
 	THINKING = 3,
-	LEFT_FORK = 4,
-	RIGHT_FORK = 5
+	LEFT_HASHI = 4,
+	RIGHT_HASHI = 5
 }	t_status;
 
 typedef enum e_bool
@@ -43,29 +43,34 @@ typedef enum e_bool
 	TRUE = 1
 }	t_bool;
 
-typedef struct s_philo
+typedef struct s_plate
 {
-	int			index;
-	pthread_t	*thread;
-	t_status	status;
-}				t_philo;
+	unsigned int	id;
+	pthread_mutex_t	*hashi;
+	pthread_t		*philo;
+	unsigned int	total_ate;
+	time_t			last_meal;
+	t_status		status;
+}					t_plate;
 
 typedef struct s_butler
 {
-	int			total_philos;
-	int			time_to_die;
-	int			time_to_eat;
-	int			time_to_sleep;
-	int			total_meals;
-	t_philo		**chairs;
-}				t_butler;
+	t_plate			**table;
+	unsigned int	total_philos;
+	time_t			time_to_die;
+	time_t			time_to_eat;
+	time_t			time_to_sleep;
+	unsigned int	total_must_eat;
+}					t_butler;
 
 t_butler	*call_butler(void);
-int			atoui(char *str);
+int			ratatoui(char *str);
 int			validate_invites(char **invites, int size);
 void		instruct_the_butler(char **info, int len);
-int			put_chairs(int total);
+int			set_table(int total);
+int			accommodate_guests(t_plate **table, int total);
 int			end_dinner(int error);
 
+void *philosopher(void *arg);
 
 #endif

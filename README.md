@@ -9,12 +9,12 @@
 
 É um problema clássico da computação proposto por **Edsger W. Dijkstra** em 1965. Esse problema ilustra os desafios de concorrência e sincronização em sistemas multi-threading.
 
-A situação hipotética é a seguinte: Existem cinco filósofos sentados em torno de uma mesa circular, e cada filósofo passa sua vida alternando entre pensar e comer. Um garfo é colocado entre cada par de filósofos, e um filósofo precisa de dois garfos adjacentes para poder comer.
+A situação hipotética é a seguinte: Existem cinco filósofos sentados em torno de uma mesa circular, e cada filósofo passa sua vida alternando entre pensar e comer. Um talher é colocado entre cada par de filósofos, e um filósofo precisa de dois talheres adjacentes para poder comer.
 
 O problema é garantir que os filósofos possam comer de maneira segura, evitando _deadlock_ (impasse), _starvation_ (inanição) e garantindo que todos tenham uma chance justa de comer. Os principais desafios incluem:
 
-  - Evitar deadlock: Se todos os filósofos pegarem um garfo ao mesmo tempo, eles podem ficar bloqueados, esperando o segundo garfo para sempre.
-  - Evitar starvation: Garantir que cada filósofo tenha uma chance justa de pegar garfos e comer, em vez de alguns filósofos sempre comerem antes dos outros.
+  - Evitar deadlock: Se todos os filósofos pegarem um talher ao mesmo tempo, eles podem ficar bloqueados, esperando o segundo talher para sempre.
+  - Evitar starvation: Garantir que cada filósofo tenha uma chance justa de pegar talheres e comer, em vez de alguns filósofos sempre comerem antes dos outros.
 
 ## Philosophers
 

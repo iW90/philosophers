@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:34:26 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/21 20:37:33 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:27:34 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_status(int status)
 	if (status == 3)
 		printf("Thinking.\n");
 	if (status == 4)
-		printf("Holding Left Fork\n");
+		printf("Holding Left Hashi\n");
 	if (status == 5)
-		printf("Holding Right Fork\n");
+		printf("Holding Right Hashi\n");
 }
