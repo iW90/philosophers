@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/21 22:45:07 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:09:12 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ t_butler	*call_butler(void)
 int	main(int ac, char **av)
 {
 	if (ac < 5 || ac > 6)
-		end_dinner("The number of arguments should be four or five", -1);
-	validate_invites(++av, --ac);
+		return (end_dinner(-1));
+	if (!validate_invites(++av, --ac))
+		return (-1);
 	instruct_the_butler(av, ac);
-	put_forks(call_butler()->total_philos);
+	if (!put_chairs(call_butler()->total_philos))
+		return (2);
 
-	return(end_dinner("The dinner was delicious!", 0));
+	return(end_dinner(0));
 }

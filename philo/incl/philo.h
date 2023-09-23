@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/21 22:43:51 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:06:40 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,15 +57,15 @@ typedef struct s_butler
 	int			time_to_eat;
 	int			time_to_sleep;
 	int			total_meals;
-	t_philo		**forks;
+	t_philo		**chairs;
 }				t_butler;
 
 t_butler	*call_butler(void);
 int			atoui(char *str);
-void		validate_invites(char **invites, int size);
+int			validate_invites(char **invites, int size);
 void		instruct_the_butler(char **info, int len);
-void		put_forks(int total);
-int			end_dinner(char *msg, int error);
+int			put_chairs(int total);
+int			end_dinner(int error);
 
 
 #endif

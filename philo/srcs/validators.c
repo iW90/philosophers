@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 21:31:49 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/21 22:43:42 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/23 15:10:01 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static t_bool	has_fake_invite(char *invite)
 	return (TRUE);
 }
 
-void	validate_invites(char **invites, int size)
+int	validate_invites(char **invites, int size)
 {
 	int	i;
 	int	number;
@@ -54,17 +54,14 @@ void	validate_invites(char **invites, int size)
 	while (++i < size)
 	{
 		if (!has_fake_invite(invites[i]))
-			end_dinner(\
-		"Some invitations are fake. Only numeric digits are accepted", 1);
+			return (end_dinner(2));
 		number = atoui(invites[i]);
 		if (i == 1 && number <= 0)
-			end_dinner(\
-		"At least one philosopher needs to have accepted the invitation", 1);
+			return (end_dinner(3));
 		if (i == 1 && number > MAX_PHILOS)
-			end_dinner(\
-		"There are only two hundred forks, invite fewer philosophers", 1);
+			return (end_dinner(4));
 		if (i >= 2 && number < 0)
-			end_dinner(\
-		"Take as much time as you need, as long as it's greater than zero", 1);
+			return (end_dinner(5));
 	}
+	return (0);
 }
