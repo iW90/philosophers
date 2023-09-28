@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/27 20:44:36 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/27 22:21:28 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,9 @@ int			validate_invites(char **invites, int size);
 void		instruct_the_butler(char **info, int len);
 int			set_table(int total);
 int			accommodate_guests(t_plate **table, int total);
+time_t		get_time_in_usec(void);
 int			end_dinner(int error);
 
-void *philosopher(void *arg);
+void		*philosopher(void *arg);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/09/23 19:01:13 by inwagner         ###   ########.fr        #
+#    Updated: 2023/09/27 22:20:25 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ FTS			:=	main.c \
 				exit.c \
 				parser.c \
 				start.c \
+				time.c \
 				utils.c \
 				validators.c
 

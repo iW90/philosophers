@@ -99,3 +99,20 @@ Usada para liberar uma variável.
   - pthread_mutex_t **\*mutex**: variável a ser desbloqueada;
 
 Se a variável for liberada com sucesso, retornará 0.
+
+## gettimeofday
+
+Obtém a data e hora atual.
+
+`int gettimeofday(struct timeval *tv, struct timezone *tz);`
+
+  - struct timeval **\*tv**: Struct onde serão armazenadas as informações de data e hora.
+  - struct timezone **\*tz**: (nullable) Era usado para obter informações sobre o fuso horário, mas é obsoleto na maioria dos sistemas modernos.
+
+````c
+struct timeval
+{
+	time_t		tv_sec;     // segundos
+	suseconds_t	tv_usec;    // microssegundos
+};
+````
