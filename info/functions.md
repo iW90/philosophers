@@ -4,10 +4,10 @@
   - [pthread_create](#pthread_create)
   - [pthread_join](#pthread_join)
   - [pthread_detach](#pthread_detach)
-  - pthread_mutex_init
-  - pthread_mutex_destroy
-  - pthread_mutex_lock
-  - pthread_mutex_unlock
+  - [pthread_mutex_init](#pthread_mutex_init)
+  - [pthread_mutex_destroy](#pthread_mutex_destroy)
+  - [pthread_mutex_lock](#pthread_mutex_lock)
+  - [pthread_mutex_unlock](#pthread_mutex_unlock)
 - **sys/time.h**
   - gettimeofday
 - **stdio.h**
@@ -21,7 +21,7 @@
   - write
   - usleep
 
-## **pthread_create**
+## pthread_create
 
 Inicia uma nova thread.
 
@@ -34,7 +34,7 @@ Inicia uma nova thread.
 
 Se a thread for criada com sucesso, retornará 0.
 
-## **pthread_join**
+## pthread_join
 
 Usada para aguardar que uma thread secundária termine sua execução antes que o programa principal continue.
 
@@ -47,7 +47,7 @@ Usada para aguardar que uma thread secundária termine sua execução antes que 
 
 Se a thread for encerrada com sucesso, retornará 0.
 
-## **pthread_detach**
+## pthread_detach
 
 Usada para indicar que uma thread secundária não precisa ser aguardada pelo programa principal para encerrar.
 
@@ -58,3 +58,44 @@ Usada para indicar que uma thread secundária não precisa ser aguardada pelo pr
   - pthread_t **thread**: thread (não o endereço);
 
 Se a thread for encerrada com sucesso, retornará 0.
+
+## pthread_mutex_init
+
+Usada para inicializar uma variável e configurá-la com os atributos especificados.
+
+`int pthread_mutex_init(pthread_mutex_t *mutex, const pthread_mutexattr_t *attr);`
+
+  - pthread_mutex_t **\*mutex**: variável a ser inicializada;
+  - const pthread_mutexattr_t **\*attr**: (ponteiro opcional, nullable) Um ponteiro para uma estrutura pthread_mutexattr_t que especifica os atributos do mutex.
+
+Se o mutex for inicializado com sucesso, retornará 0.
+
+## pthread_mutex_destroy
+
+Usada para liberar os recursos associados à variável.
+
+`int pthread_mutex_destroy(pthread_mutex_t *mutex);`
+
+  - pthread_mutex_t **\*mutex**: variável a ser encerrada;
+
+Se o mutex for encerrado com sucesso, retornará 0.
+
+## pthread_mutex_lock
+
+Usada para proteger uma variável.
+
+`int pthread_mutex_lock(pthread_mutex_t *mutex);`
+
+  - pthread_mutex_t **\*mutex**: variável a ser bloqueada;
+
+Se a variável for protegida com sucesso, retornará 0.
+
+## pthread_mutex_unlock
+
+Usada para liberar uma variável.
+
+`int pthread_mutex_unlock(pthread_mutex_t *mutex);`
+
+  - pthread_mutex_t **\*mutex**: variável a ser desbloqueada;
+
+Se a variável for liberada com sucesso, retornará 0.

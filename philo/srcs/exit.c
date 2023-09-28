@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/23 21:13:14 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/09/27 21:41:39 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,25 @@ int	end_dinner(int error)
 
 	dinner_problems(error);
 	james = call_butler();
-	if (james->table && james->table[0] && james->table[0]->philo)
-	{
-		pthread_detach(*james->table[0]->philo);
-		free(james->table[0]->philo);
-	}
-	if (james->table && james->table[0])
-		free(james->table[0]);
 	if (james->table)
+	{
+		if (james->table[0])
+		{
+			if (james->table[0]->philo)
+			{
+				pthread_detach(*james->table[0]->philo);
+				free(james->table[0]->philo);
+			}
+			if (james->table[0]->hashi)
+			{
+				pthread_mutex_destroy(james->table[0]->hashi);
+				free(james->table[0]->hashi);
+			}
+			if (james->table[0]->hashis)
+				free(james->table[0]->hashis);
+			free(james->table[0]);
+		}
 		free(james->table);
-	return (0);
+	}
+	return (error);
 }
