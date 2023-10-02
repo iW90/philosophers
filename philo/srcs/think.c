@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   think.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/27 21:58:27 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/01 21:27:59 by inwagner         ###   ########.fr       */
+/*   Created: 2023/10/01 20:42:16 by inwagner          #+#    #+#             */
+/*   Updated: 2023/10/01 21:43:55 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-time_t	get_time_in_usec(void)
+void	philo_thinking()
 {
-	struct timeval		tv;
+	philo->status = THINKING;
+	print_status(philo);
 
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000000 + tv.tv_usec);
 }

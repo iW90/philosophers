@@ -9,7 +9,7 @@
   - [pthread_mutex_lock](#pthread_mutex_lock)
   - [pthread_mutex_unlock](#pthread_mutex_unlock)
 - **sys/time.h**
-  - gettimeofday
+  - [gettimeofday](#gettimeofday)
 - **stdio.h**
   - printf
 - **stdlib.h**

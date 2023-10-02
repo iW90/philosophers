@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time.c                                             :+:      :+:    :+:   */
+/*   sleep.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/27 21:58:27 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/01 21:27:59 by inwagner         ###   ########.fr       */
+/*   Created: 2023/10/01 20:43:06 by inwagner          #+#    #+#             */
+/*   Updated: 2023/10/01 21:17:56 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-time_t	get_time_in_usec(void)
+void	philo_sleep(t_plate *philo)
 {
-	struct timeval		tv;
-
-	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000000 + tv.tv_usec);
+	philo->status = SLEEPING;
+	print_status(philo);
+	usleep(call_butler()->time_to_sleep);
 }

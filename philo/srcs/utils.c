@@ -6,24 +6,29 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:34:26 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/23 15:27:34 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/01 21:27:50 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_status(int status)
+time_t	print_status(int philo)
 {
-	if (!status)
+	time_t	time;
+
+	time = get_time_in_usec();
+	printf("[%li] Philo %i", time / 1000, philo->id);
+	if (!philo->status)
 		printf("Died.\n");
-	if (status == 1)
+	if (philo->status == 1)
 		printf("Eating.\n");
-	if (status == 2)
+	if (philo->status == 2)
 		printf("Sleeping.\n");
-	if (status == 3)
+	if (philo->status == 3)
 		printf("Thinking.\n");
-	if (status == 4)
+	if (philo->status == 4)
 		printf("Holding Left Hashi\n");
-	if (status == 5)
+	if (philo->status == 5)
 		printf("Holding Right Hashi\n");
+	return (time);
 }
