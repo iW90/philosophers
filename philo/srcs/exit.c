@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 16:23:08 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 17:06:20 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,28 @@ static void	dinner_problems(int error)
 		printf("Thanks for the dinner!\n");
 }
 
+static void	kill_philos(t_plate **table, int total)
+{
+	if (table[0]->philo)
+	{
+		while (--total >= 0)
+		{
+			pthread_join(*table[total]->philo, NULL);
+		}
+		free(table[0]->philo);
+	}
+}
+
+static void	clean_hashis(t_plate **table, int total)
+{
+	if (table[0]->hashi)
+	{
+		while (--total >= 0)
+			pthread_mutex_destroy(table[total]->hashi);
+		free(table[0]->hashi);
+	}
+}
+
 int	end_dinner(int error)
 {
 	t_butler	*james;
@@ -40,16 +62,8 @@ int	end_dinner(int error)
 	{
 		if (james->table[0])
 		{
-			if (james->table[0]->philo)
-			{
-				pthread_join(*james->table[0]->philo, NULL); //fazer looping para free
-				free(james->table[0]->philo);
-			}
-			if (james->table[0]->hashi)
-			{
-				pthread_mutex_destroy(james->table[0]->hashi); //fazer looping para free
-				free(james->table[0]->hashi);
-			}
+			kill_philos(&james->table[0], james->total_philos);
+			clean_hashis(&james->table[0], james->total_philos);
 			free(james->table[0]);
 		}
 		free(james->table);

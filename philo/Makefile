@@ -6,7 +6,7 @@
 #    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/10/08 16:19:29 by inwagner         ###   ########.fr        #
+#    Updated: 2023/10/08 16:47:31 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,7 +56,7 @@ fclean:	clean
 re: fclean all
 
 val: re
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} 2 2 2 2 || echo ""
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} 4 4 4 4 || echo ""
 
 vale: re
 	@valgrind --tool=helgrind ./${NAME} 4 4 4 4 || echo ""
