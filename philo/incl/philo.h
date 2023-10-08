@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/01 21:49:07 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 11:12:25 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_plate
 	unsigned int	id;
 	pthread_mutex_t	*hashi;
 	pthread_t		*philo;
-	unsigned int	*hashis;
+	unsigned int	hashis;
 	unsigned int	total_ate;
 	time_t			last_meal;
 	t_status		status;
@@ -64,6 +64,7 @@ typedef struct s_butler
 	time_t			time_to_sleep;
 	unsigned int	total_must_eat;
 	int				end_dinner;
+	pthread_mutex_t	printer;
 }					t_butler;
 
 t_butler	*call_butler(void);
@@ -74,6 +75,8 @@ int			set_table(int total);
 int			accommodate_guests(t_plate **table, int total);
 time_t		get_time_in_usec(void);
 int			end_dinner(int error);
+
+time_t		print_status(t_plate *philo);
 
 void		*philosopher(void *arg);
 

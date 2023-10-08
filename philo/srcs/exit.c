@@ -6,13 +6,13 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/27 21:41:39 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 12:01:35 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	dinner_problems(int	error)
+static void	dinner_problems(int error)
 {
 	if (error == -1)
 		printf("The number of arguments should be four or five.\n");
@@ -42,7 +42,7 @@ int	end_dinner(int error)
 		{
 			if (james->table[0]->philo)
 			{
-				pthread_detach(*james->table[0]->philo);
+				pthread_join(*james->table[0]->philo, NULL);
 				free(james->table[0]->philo);
 			}
 			if (james->table[0]->hashi)
@@ -50,11 +50,11 @@ int	end_dinner(int error)
 				pthread_mutex_destroy(james->table[0]->hashi);
 				free(james->table[0]->hashi);
 			}
-			if (james->table[0]->hashis)
-				free(james->table[0]->hashis);
 			free(james->table[0]);
 		}
 		free(james->table);
 	}
+	if (&james->printer)
+		pthread_mutex_destroy(&james->printer);
 	return (error);
 }

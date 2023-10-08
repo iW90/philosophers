@@ -6,7 +6,7 @@
 #    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/09/27 22:20:25 by inwagner         ###   ########.fr        #
+#    Updated: 2023/10/08 11:27:55 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,9 @@ CFLAGS		:=	-Wall -Wextra -Werror -g -I $(HDR_DIR)
 
 # Source files
 FTS			:=	main.c \
+				action_eat.c \
+				action_sleep.c \
+				action_think.c \
 				exit.c \
 				parser.c \
 				start.c \
@@ -54,5 +57,11 @@ re: fclean all
 
 val: re
 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} 2 2 2 2 || echo ""
+
+vale: re
+	@valgrind --tool=helgrind ./${NAME} 4 4 4 4 || echo ""
+
+valy: re
+	@valgrind --tool=drd ./${NAME} 4 4 4 4 || echo ""
 
 .PHONY: all clean fclean re
