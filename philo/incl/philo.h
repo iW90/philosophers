@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 11:12:25 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 15:38:15 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_plate
 	unsigned int	id;
 	pthread_mutex_t	*hashi;
 	pthread_t		*philo;
-	unsigned int	hashis;
+	unsigned int	hashis[2];
 	unsigned int	total_ate;
 	time_t			last_meal;
 	t_status		status;

@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 12:01:35 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 16:23:08 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	end_dinner(int error)
 		{
 			if (james->table[0]->philo)
 			{
-				pthread_join(*james->table[0]->philo, NULL);
+				pthread_join(*james->table[0]->philo, NULL); //fazer looping para free
 				free(james->table[0]->philo);
 			}
 			if (james->table[0]->hashi)
 			{
-				pthread_mutex_destroy(james->table[0]->hashi);
+				pthread_mutex_destroy(james->table[0]->hashi); //fazer looping para free
 				free(james->table[0]->hashi);
 			}
 			free(james->table[0]);

@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 18:09:20 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 12:03:14 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 16:30:14 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,22 @@ void	*philosopher(void *arg)
 	return (NULL);
 }
 
+void	set_hashis(t_plate **table, int total)
+{
+	table[0]->hashis[0] = 0;
+	table[0]->hashis[1] = total - 1;
+	while (--total > 0)
+	{
+		table[total]->hashis[0] = total - 1;
+		table[total]->hashis[1] = total;
+		printf("Id %i | hashi_A: %i - hashi_B: %i\n", total, table[total]->hashis[0], table[total]->hashis[1]);
+	}
+	printf("Id 0 | hashi_A: %i - hashi_B: %i\n", table[0]->hashis[0], table[0]->hashis[1]);
+}
+
 int	accommodate_guests(t_plate **table, int total)
 {
+	set_hashis(table, total);
 	pthread_mutex_init(&call_butler()->printer, NULL);
 	while (--total >= 0)
 	{
