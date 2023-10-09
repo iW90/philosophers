@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 18:09:20 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 21:29:02 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 22:09:45 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,9 @@ static int	what_philo_is_doing(t_plate	*philo)
 void	*start_dinner(void *arg)
 {
 	t_plate		*philo;
-	t_butler	*james;
 
 	philo = (t_plate *)arg;
-	james = call_butler();
-	while (!philo->end_dinner && james->total_must_eat != philo->total_ate)
+	while (!philo->end_dinner)
 		what_philo_is_doing(philo);
 	return (NULL);
 }

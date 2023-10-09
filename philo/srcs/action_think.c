@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:42:16 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 21:27:07 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 22:12:37 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,18 @@
 
 static int	hold_hashis(t_plate *philo, int left, int right)
 {
-	pthread_mutex_lock(&philo->hashi[left]);
-	print_status(philo, LEFT_HASHI);
-	pthread_mutex_lock(&philo->hashi[right]);
-	print_status(philo, RIGHT_HASHI);
+	//if (!philo->end_dinner)
+	//{
+		pthread_mutex_lock(&philo->hashi[left]);
+		print_status(philo, LEFT_HASHI);
+		philo->holding_hashis++;
+	//}
+	//if (!philo->end_dinner)
+	//{
+		pthread_mutex_lock(&philo->hashi[right]);
+		print_status(philo, RIGHT_HASHI);
+		philo->holding_hashis++;
+	//}
 	return (0);
 }
 

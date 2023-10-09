@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 21:17:43 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 21:52:43 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ typedef struct s_plate
 	pthread_mutex_t	*hashi;
 	pthread_t		*philo;
 	unsigned int	hashis[2];
+	unsigned int	holding_hashis;
 	unsigned int	total_ate;
 	time_t			last_meal;
 	_Atomic int		end_dinner;
