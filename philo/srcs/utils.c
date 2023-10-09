@@ -6,31 +6,46 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:34:26 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 16:21:05 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 21:23:15 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-time_t	print_status(t_plate *philo)
+time_t	get_time_in_usec(void)
+{
+	struct timeval		tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000000 + tv.tv_usec);
+}
+
+int	is_dead(t_plate *philo)
+{
+	return (philo->last_meal + call_butler()->time_to_die < get_time_in_usec());
+}
+
+time_t	print_status(t_plate *philo, int status)
 {
 	time_t	time;
 
+	if (philo->end_dinner)
+		return (end_dinner(0));
 	time = get_time_in_usec();
 	pthread_mutex_lock(&call_butler()->printer);
-	printf("[%li] Philo %i ", time / 1000, philo->id + 1);
-	if (!philo->status)
-		printf("Died.\n");
-	if (philo->status == 1)
-		printf("Eating.\n");
-	if (philo->status == 2)
-		printf("Sleeping.\n");
-	if (philo->status == 3)
-		printf("Thinking.\n");
-	if (philo->status == 4)
-		printf("Holding Left Hashi\n");
-	if (philo->status == 5)
-		printf("Holding Right Hashi\n");
+	printf("[%li] Philo %i is ", time / 1000, philo->id + 1);
+	if (status == DIED)
+		printf("died.\n");
+	if (status == EATING)
+		printf("eating.\n");
+	if (status == SLEEPING)
+		printf("sleeping.\n");
+	if (status == THINKING)
+		printf("thinking.\n");
+	if (status == LEFT_HASHI)
+		printf("holding left fork.\n");
+	if (status == RIGHT_HASHI)
+		printf("holding right fork.\n");
 	pthread_mutex_unlock(&call_butler()->printer);
 	return (time);
 }

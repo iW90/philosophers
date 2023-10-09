@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 17:06:20 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 21:18:45 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void	dinner_problems(int error)
 		printf("Take as much time as you need, but not too much.\n");
 	if (error == 5)
 		printf("Guest refuse invite.\n");
-	if (!error)
-		printf("Thanks for the dinner!\n");
+	if (error == 6)
+		printf("Butler is not around.\n");
 }
 
 static void	kill_philos(t_plate **table, int total)
@@ -35,9 +35,7 @@ static void	kill_philos(t_plate **table, int total)
 	if (table[0]->philo)
 	{
 		while (--total >= 0)
-		{
 			pthread_join(*table[total]->philo, NULL);
-		}
 		free(table[0]->philo);
 	}
 }
@@ -67,6 +65,11 @@ int	end_dinner(int error)
 			free(james->table[0]);
 		}
 		free(james->table);
+	}
+	if (james->watcher)
+	{
+		pthread_join(*james->watcher, NULL);
+		free(james->watcher);
 	}
 	if (&james->printer)
 		pthread_mutex_destroy(&james->printer);

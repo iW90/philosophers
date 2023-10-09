@@ -6,19 +6,23 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:42:16 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 15:09:37 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 21:27:07 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	hold_fork()
+static int	hold_hashis(t_plate *philo, int left, int right)
 {
-	
+	pthread_mutex_lock(&philo->hashi[left]);
+	print_status(philo, LEFT_HASHI);
+	pthread_mutex_lock(&philo->hashi[right]);
+	print_status(philo, RIGHT_HASHI);
+	return (0);
 }
 
-void	philo_thinking(t_plate *philo)
+int	philo_thinking(t_plate *philo)
 {
-	philo->status = THINKING;
-	print_status(philo);
+	print_status(philo, THINKING);
+	return(hold_hashis(philo, philo->hashis[0], philo->hashis[1]));
 }

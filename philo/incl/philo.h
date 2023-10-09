@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 15:38:15 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 21:17:43 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,21 +27,21 @@
 
 # define MAX_PHILOS 200
 
-typedef enum e_status
-{
-	DIED = 0,
-	EATING = 1,
-	SLEEPING = 2,
-	THINKING = 3,
-	LEFT_HASHI = 4,
-	RIGHT_HASHI = 5
-}	t_status;
-
 typedef enum e_bool
 {
 	FALSE = 0,
 	TRUE = 1
 }	t_bool;
+
+typedef enum e_status
+{
+	DIED = 0,
+	THINKING = 1,
+	EATING = 2,
+	SLEEPING = 3,
+	LEFT_HASHI = 4,
+	RIGHT_HASHI = 5
+}	t_status;
 
 typedef struct s_plate
 {
@@ -51,7 +51,7 @@ typedef struct s_plate
 	unsigned int	hashis[2];
 	unsigned int	total_ate;
 	time_t			last_meal;
-	t_status		status;
+	_Atomic int		end_dinner;
 }					t_plate;
 
 typedef struct s_butler
@@ -63,7 +63,6 @@ typedef struct s_butler
 	time_t			time_to_eat;
 	time_t			time_to_sleep;
 	unsigned int	total_must_eat;
-	int				end_dinner;
 	pthread_mutex_t	printer;
 }					t_butler;
 
@@ -73,11 +72,17 @@ int			validate_invites(char **invites, int size);
 void		instruct_the_butler(char **info, int len);
 int			set_table(int total);
 int			accommodate_guests(t_plate **table, int total);
-time_t		get_time_in_usec(void);
 int			end_dinner(int error);
 
-time_t		print_status(t_plate *philo);
+int			philo_thinking(t_plate *philo);
+int			philo_eating(t_plate *philo);
+int			philo_sleeping(t_plate *philo);
 
-void		*philosopher(void *arg);
+time_t		print_status(t_plate *philo, int status);
+time_t		get_time_in_usec(void);
+int			is_dead(t_plate *philo);
+
+void		*start_dinner(void *arg);
+int			watch_table(void);
 
 #endif

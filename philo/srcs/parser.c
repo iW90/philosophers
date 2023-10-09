@@ -6,26 +6,23 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:11:24 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 16:16:22 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 20:14:02 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	set_table(int total)
+int	set_plates(int total, t_plate **table)
 {
-	t_plate			**table;
 	t_plate			*plate;
 	pthread_t		*philo;
 	pthread_mutex_t	*hashi;
 
-	table = malloc(sizeof(t_plate *) * total);
 	plate = malloc(sizeof(t_plate) * total);
 	philo = malloc(sizeof(pthread_t) * total);
 	hashi = malloc(sizeof(pthread_mutex_t) * total);
-	if (!table || !plate || !philo || !hashi)
+	if (!plate || !philo || !hashi)
 		return (end_dinner(2));
-	call_butler()->table = table;
 	while (--total >= 0)
 	{
 		plate[total] = (t_plate){0};
@@ -34,4 +31,13 @@ int	set_table(int total)
 		table[total] = &plate[total];
 	}
 	return (0);
+}
+
+int	set_table(int total)
+{
+	call_butler()->table = malloc(sizeof(t_plate *) * total);
+	call_butler()->watcher = malloc(sizeof(pthread_t));
+	if (!call_butler()->table || !call_butler()->watcher)
+		return (end_dinner(2));
+	return (set_plates(total, call_butler()->table));
 }

@@ -6,7 +6,7 @@
 #    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/10/08 16:47:31 by inwagner         ###   ########.fr        #
+#    Updated: 2023/10/08 21:46:23 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,10 +26,10 @@ FTS			:=	main.c \
 				action_eat.c \
 				action_sleep.c \
 				action_think.c \
+				butler.c \
 				exit.c \
 				parser.c \
 				start.c \
-				time.c \
 				utils.c \
 				validators.c
 
@@ -56,12 +56,12 @@ fclean:	clean
 re: fclean all
 
 val: re
-	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} 4 4 4 4 || echo ""
+	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} 4 300 100 100 5 || echo ""
 
-vale: re
-	@valgrind --tool=helgrind ./${NAME} 4 4 4 4 || echo ""
+hel: re
+	@valgrind --tool=helgrind ./${NAME} 4 300 100 100 5 || echo ""
 
-valy: re
-	@valgrind --tool=drd ./${NAME} 4 4 4 4 || echo ""
+drd: re
+	@valgrind --tool=drd ./${NAME} 4 300 100 100 5 || echo ""
 
 .PHONY: all clean fclean re

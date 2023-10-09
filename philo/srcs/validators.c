@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 21:31:49 by inwagner          #+#    #+#             */
-/*   Updated: 2023/09/23 18:23:27 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/08 19:47:04 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	validate_invites(char **invites, int size)
 		if (!has_fake_invite(invites[i]))
 			return (end_dinner(2));
 		number = ratatoui(invites[i]);
-		if (i == 1 && (number <= 0 || number > MAX_PHILOS))
+		if (i == 0 && (number <= 0 || number > MAX_PHILOS))
 			return (end_dinner(3));
-		if (i >= 2 && number < 0)
+		if (i >= 1 && number < 0)
 			return (end_dinner(4));
 	}
 	return (0);
