@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:30:40 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 22:07:50 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/09 15:14:36 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 static void	drop_hashis(t_plate *philo, int left, int right)
 {
-	//if (philo->holding_hashis == 2)
-	//{
+	if (philo->holding_hashis == 2)
+	{
 		pthread_mutex_unlock(&philo->hashi[right]);
 		philo->holding_hashis--;
-	//}
-	//if (philo->holding_hashis == 1)
-	//{
+	}
+	if (philo->holding_hashis == 1)
+	{
 		pthread_mutex_unlock(&philo->hashi[left]);
 		philo->holding_hashis--;
-	//}
+	}
 }
 
 int	philo_eating(t_plate *philo)
