@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:30:40 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/11 20:18:27 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/11 20:24:53 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	drop_hashis(t_plate *philo, int left, int right)
 int	philo_eating(t_plate *philo)
 {
 	philo->last_meal = print_status(philo, EATING);
-	drop_hashis(philo, philo->hashis[0], philo->hashis[1]);
 	usleep(call_butler()->time_to_eat);
 	if (++philo->total_ate == call_butler()->total_must_eat)
 		philo->end_dinner = TRUE;
+	drop_hashis(philo, philo->hashis[0], philo->hashis[1]);
 	return (0);
 }
