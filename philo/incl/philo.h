@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 21:52:43 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/11 20:18:29 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ typedef struct s_plate
 
 typedef struct s_butler
 {
-	pthread_t		*watcher;
 	t_plate			**table;
 	unsigned int	total_philos;
 	time_t			time_to_die;
@@ -84,6 +83,6 @@ time_t		get_time_in_usec(void);
 int			is_dead(t_plate *philo);
 
 void		*start_dinner(void *arg);
-int			watch_table(void);
+void		stalk_table(t_plate **table, int total);
 
 #endif

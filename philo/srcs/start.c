@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 18:09:20 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 22:09:45 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/09 19:06:42 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	accommodate_guests(t_plate **table, int total)
 			start_dinner, table[total]))
 			return (end_dinner(5));
 	}
-	if(watch_table())
-		return (5);
+	//if(watch_table())
+	//	return (5);
 	return (0);
 }

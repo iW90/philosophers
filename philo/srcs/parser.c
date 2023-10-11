@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:11:24 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 20:14:02 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/10 22:51:32 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ int	set_plates(int total, t_plate **table)
 int	set_table(int total)
 {
 	call_butler()->table = malloc(sizeof(t_plate *) * total);
-	call_butler()->watcher = malloc(sizeof(pthread_t));
-	if (!call_butler()->table || !call_butler()->watcher)
+	if (!call_butler()->table)
 		return (end_dinner(2));
 	return (set_plates(total, call_butler()->table));
 }
