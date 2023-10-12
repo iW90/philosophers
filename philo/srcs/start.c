@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 18:09:20 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/11 21:52:12 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/11 22:26:59 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,22 @@ static void	set_hashis(t_plate **table, int total)
 	}
 }
 
-int	accommodate_guests(t_plate **table, int total)
+static int	get_hashis(t_plate **table, int total)
 {
 	set_hashis(table, total);
 	while (--total >= 0)
+		if (pthread_mutex_init(table[total]->hashi, NULL))
+			return (1);
+	return (0);
+}
+
+int	accommodate_guests(t_plate **table, int total)
+{
+	if (get_hashis(table, total))
+		return (end_dinner(1));
+	while (--total >= 0)
 	{
 		table[total]->id = total;
-		if (pthread_mutex_init(table[total]->hashi, NULL))
-			return (end_dinner(1));
 		table[total]->last_meal = get_time_in_usec();
 		if (pthread_create(table[total]->philo, NULL, \
 			start_dinner, table[total]))
