@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 18:09:20 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/12 14:08:06 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:09:46 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static void	set_hashis(t_plate **table, int total)
 	table[0]->hashis[1] = total - 1;
 	while (--total > 0)
 	{
-		if (call_butler()->total_philos % 2 != 0)
+		if (call_butler()->total_philos % 2 != 0 && \
+			total % 2 != 0)
 		{
 			table[total]->hashis[0] = 0;
 			table[total]->hashis[1] = -1;
