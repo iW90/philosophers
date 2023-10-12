@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 16:30:40 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/11 21:29:38 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/12 14:36:33 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static int	drop_hashis(t_plate *philo, int left, int right)
 		pthread_mutex_unlock(&philo->hashi[right]);
 		philo->holding_hashis--;
 	}
-	if (philo->holding_hashis == 1)
+	if (philo->holding_hashis == 1 && \
+		call_butler()->total_philos > 1)
 	{
 		pthread_mutex_unlock(&philo->hashi[left]);
 		philo->holding_hashis--;
@@ -31,9 +32,15 @@ int	philo_eating(t_plate *philo)
 {
 	if (philo->end_dinner)
 		return (drop_hashis(philo, philo->hashis[0], philo->hashis[1]));
-	philo->last_meal = print_status(philo, EATING);
-	usleep(call_butler()->time_to_eat);
-	if (++philo->total_ate == call_butler()->total_must_eat)
-		call_butler()->stop = TRUE;
-	return (drop_hashis(philo, philo->hashis[0], philo->hashis[1]));
+	if (philo->holding_hashis == 2)
+	{
+		philo->last_meal = print_status(philo, EATING);
+		usleep(call_butler()->time_to_eat);
+		if (++philo->total_ate == call_butler()->total_must_eat)
+			call_butler()->stop = TRUE;
+		return (drop_hashis(philo, philo->hashis[0], philo->hashis[1]));
+	}
+	drop_hashis(philo, philo->hashis[0], philo->hashis[1]);
+	usleep(call_butler()->time_to_die + 1000);
+	return (1);
 }
