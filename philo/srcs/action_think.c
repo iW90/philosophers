@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:42:16 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/09 15:14:51 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/11 21:20:19 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static int	hold_hashis(t_plate *philo, int left, int right)
 
 int	philo_thinking(t_plate *philo)
 {
+	if (philo->end_dinner)
+		return (0);
 	print_status(philo, THINKING);
 	return(hold_hashis(philo, philo->hashis[0], philo->hashis[1]));
 }

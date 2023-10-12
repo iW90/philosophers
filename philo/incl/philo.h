@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/11 20:33:52 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/11 21:11:36 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_butler
 	time_t			time_to_eat;
 	time_t			time_to_sleep;
 	unsigned int	total_must_eat;
+	_Atomic int		stop;
 	pthread_mutex_t	printer;
 }					t_butler;
 

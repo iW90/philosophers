@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/08 20:18:51 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/11 20:44:58 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/11 21:13:04 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	stop_simulation(t_plate *philo, t_plate **table, int total)
 {
 	print_status(philo, DIED);
+	call_butler()->stop = TRUE;
 	while (--total >= 0)
 		table[total]->end_dinner = TRUE;
 	return (TRUE);
