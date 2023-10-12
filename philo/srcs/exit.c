@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/11 20:19:03 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/11 21:50:41 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,6 @@ int	end_dinner(int error)
 		}
 		free(james->table);
 	}
-	//	pthread_mutex_destroy(&james->printer);
+	pthread_mutex_destroy(&james->printer);
 	return (error);
 }

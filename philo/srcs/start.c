@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/23 18:09:20 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/09 19:06:42 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/11 21:52:12 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ static void	set_hashis(t_plate **table, int total)
 
 int	accommodate_guests(t_plate **table, int total)
 {
-	pthread_mutex_init(&call_butler()->printer, NULL);
 	set_hashis(table, total);
 	while (--total >= 0)
 	{
@@ -55,7 +54,5 @@ int	accommodate_guests(t_plate **table, int total)
 			start_dinner, table[total]))
 			return (end_dinner(5));
 	}
-	//if(watch_table())
-	//	return (5);
 	return (0);
 }

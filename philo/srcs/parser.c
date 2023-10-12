@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 18:11:24 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/10 22:51:32 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/11 21:52:59 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	set_plates(int total, t_plate **table)
 
 int	set_table(int total)
 {
+	pthread_mutex_init(&call_butler()->printer, NULL);
 	call_butler()->table = malloc(sizeof(t_plate *) * total);
 	if (!call_butler()->table)
 		return (end_dinner(2));
