@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:34:26 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/12 15:00:04 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/12 15:17:32 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ time_t	print_status(t_plate *philo, int status)
 		return (0);
 	time = get_time_in_usec();
 	pthread_mutex_lock(&call_butler()->printer);
-	printf("\t[%li]\tPhilo %i ", time / 1000, philo->id + 1);
+	printf("%li\t%i ", time / 1000, philo->id + 1);
 	if (status == DIED)
 		printf("is dead.\n");
 	if (status == EATING)
