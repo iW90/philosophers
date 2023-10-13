@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 12:46:13 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:36:30 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,6 @@ typedef enum e_bool
 	FALSE = 0,
 	TRUE = 1
 }	t_bool;
-
-typedef enum e_status
-{
-	DIED = 0,
-	THINKING = 1,
-	EATING = 2,
-	SLEEPING = 3,
-	LEFT_HASHI = 4,
-	RIGHT_HASHI = 5
-}	t_status;
 
 typedef struct s_plate
 {
@@ -79,7 +69,7 @@ int			accommodate_guests(t_plate **table, int total);
 int			set_table(int total);
 int			validate_invites(char **invites, int size);
 
-time_t		print_status(t_plate *philo, int status);
+time_t		print_status(t_plate *philo, char *str);
 time_t		get_time_in_usec(void);
 int			is_dead(t_plate *philo);
 int			ratatoui(char *str);

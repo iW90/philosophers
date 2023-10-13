@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:42:16 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 12:47:04 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:12:28 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,14 @@ static int	hold_hashis(t_plate *philo, int left, int right)
 	if (!call_butler()->stop && !philo->holding_hashis)
 	{
 		pthread_mutex_lock(&philo->hashi[left]);
-		print_status(philo, LEFT_HASHI);
+		print_status(philo, "has taken a fork\n");
 		philo->holding_hashis++;
 	}
 	if (!call_butler()->stop && philo->holding_hashis == 1 && \
 		call_butler()->total_philos > 1)
 	{
 		pthread_mutex_lock(&philo->hashi[right]);
-		print_status(philo, RIGHT_HASHI);
+		print_status(philo, "has taken a fork\n");
 		philo->holding_hashis++;
 	}
 	return (0);
@@ -50,7 +50,6 @@ int	philo_thinking(t_plate *philo)
 {
 	if (call_butler()->stop)
 		return (0);
-	print_status(philo, THINKING);
 	return (hold_hashis(philo, philo->hashis[0], philo->hashis[1]));
 }
 
@@ -60,7 +59,7 @@ int	philo_eating(t_plate *philo)
 		return (drop_hashis(philo, philo->hashis[0], philo->hashis[1]));
 	if (philo->holding_hashis == 2)
 	{
-		philo->last_meal = print_status(philo, EATING);
+		philo->last_meal = print_status(philo, "is eating\n");
 		usleep(call_butler()->time_to_eat);
 		if (++philo->total_ate == call_butler()->total_must_eat)
 			call_butler()->stop = TRUE;
@@ -75,7 +74,8 @@ int	philo_sleeping(t_plate *philo)
 {
 	if (call_butler()->stop)
 		return (0);
-	print_status(philo, SLEEPING);
+	print_status(philo, "is sleeping\n");
 	usleep(call_butler()->time_to_sleep);
+	print_status(philo, "is thinking\n");
 	return (0);
 }

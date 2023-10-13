@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 12:57:41 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 15:12:34 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	stalk_table(t_plate **table, int total)
 		{
 			if (is_dead(table[i]) || call_butler()->stop)
 			{
-				print_status(table[i], DIED);
+				print_status(table[i], "is dead\n");
 				call_butler()->stop = TRUE;
 				break ;
 			}
