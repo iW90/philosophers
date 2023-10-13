@@ -20,11 +20,11 @@
 
 - [ ] `./philo 5 600 150 150`: nenhum filósofo deve morrer
 
-- [ ] `./philo 4 410 200 200`: nenhum filósofo deve morrer
+- [x] `./philo 4 410 200 200`: nenhum filósofo deve morrer
 
 - [ ] `./philo 100 800 200 200`: nenhum filósofo deve morrer
 
-- [ ] `./philo 105 800 200 200`: nenhum filósofo deve morrer
+- [x] `./philo 105 800 200 200`: nenhum filósofo deve morrer
 
 - [ ] `./philo 200 800 200 200`: nenhum filósofo deve morrer
 
