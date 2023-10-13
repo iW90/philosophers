@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit.c                                             :+:      :+:    :+:   */
+/*   finish.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 11:10:02 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:01:38 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,10 +81,11 @@ void	stalk_table(t_plate **table, int total)
 		i = -1;
 		while (++i < total)
 		{
-			if (table[i]->end_dinner || is_dead(table[i]))
+			if (is_dead(table[i]) || call_butler()->stop || \
+				table[i]->end_dinner)
 			{
-				print_status(table[i], DIED);
 				call_butler()->stop = TRUE;
+				print_status(table[i], DIED);
 				while (--total >= 0)
 					table[total]->end_dinner = TRUE;
 				stop = TRUE;

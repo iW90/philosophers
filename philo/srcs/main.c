@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 11:18:43 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:59:34 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,13 @@ static void	inform_butler(char **info, int len)
 
 static int	what_philo_is_doing(t_plate	*philo)
 {
-	philo_thinking(philo);
-	philo_eating(philo);
-	philo_sleeping(philo);
+	if (!philo->end_dinner)
+	{
+		philo_thinking(philo);
+		philo_eating(philo);
+	}
+	if (!philo->end_dinner)
+		philo_sleeping(philo);
 	return (0);
 }
 
