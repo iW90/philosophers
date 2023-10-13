@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 21:31:49 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/08 19:47:04 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:26:39 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,6 @@
 static int	ft_isdigit(int c)
 {
 	return ((unsigned)c - '0' < 10);
-}
-
-int	ratatoui(char *str)
-{
-	unsigned int	number;
-	int				i;
-
-	i = 0;
-	number = 0;
-	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
-	{
-		number = number * 10 + (str[i] - '0');
-		i++;
-	}
-	if (number > INT_MAX)
-		return (-1);
-	return ((int)number);
 }
 
 static t_bool	has_fake_invite(char *invite)
@@ -54,12 +37,12 @@ int	validate_invites(char **invites, int size)
 	while (++i < size)
 	{
 		if (!has_fake_invite(invites[i]))
-			return (end_dinner(2));
+			return (finish_dinner(2, 0, 0));
 		number = ratatoui(invites[i]);
 		if (i == 0 && (number <= 0 || number > MAX_PHILOS))
-			return (end_dinner(3));
+			return (finish_dinner(3, 0, 0));
 		if (i >= 1 && number < 0)
-			return (end_dinner(4));
+			return (finish_dinner(4, 0, 0));
 	}
 	return (0);
 }

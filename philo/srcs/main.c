@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/12 15:02:20 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:18:43 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ t_butler	*call_butler(void)
 	return (&james);
 }
 
-void	instruct_the_butler(char **info, int len)
+static void	inform_butler(char **info, int len)
 {
 	t_butler	*james;
 
@@ -34,20 +34,38 @@ void	instruct_the_butler(char **info, int len)
 		james->total_must_eat = 0;
 }
 
+static int	what_philo_is_doing(t_plate	*philo)
+{
+	philo_thinking(philo);
+	philo_eating(philo);
+	philo_sleeping(philo);
+	return (0);
+}
+
+void	*start_dinner(void *arg)
+{
+	t_plate		*philo;
+
+	philo = (t_plate *)arg;
+	while (!philo->end_dinner)
+		what_philo_is_doing(philo);
+	return (NULL);
+}
+
 int	main(int ac, char **av)
 {
 	unsigned int	total;
 
 	if (ac < 5 || ac > 6)
-		return (end_dinner(-1));
+		return (finish_dinner(-1, 0, 0));
 	if (validate_invites(++av, --ac))
 		return (-1);
-	instruct_the_butler(av, ac);
+	inform_butler(av, ac);
 	total = call_butler()->total_philos;
 	if (set_table(total))
 		return (2);
 	if (accommodate_guests(call_butler()->table, total))
 		return (3);
 	stalk_table(call_butler()->table, total);
-	return (end_dinner(0));
+	return (finish_dinner(0, total, total));
 }

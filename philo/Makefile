@@ -6,7 +6,7 @@
 #    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/10/08 21:46:23 by inwagner         ###   ########.fr        #
+#    Updated: 2023/10/13 11:14:32 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,13 +23,9 @@ CFLAGS		:=	-Wall -Wextra -Werror -g -I $(HDR_DIR)
 
 # Source files
 FTS			:=	main.c \
-				action_eat.c \
-				action_sleep.c \
-				action_think.c \
-				butler.c \
-				exit.c \
+				actions.c \
+				finish.c \
 				parser.c \
-				start.c \
 				utils.c \
 				validators.c
 

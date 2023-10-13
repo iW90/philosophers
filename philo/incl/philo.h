@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/11 21:11:36 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:31:26 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,21 @@ typedef struct s_butler
 }					t_butler;
 
 t_butler	*call_butler(void);
-int			ratatoui(char *str);
-int			validate_invites(char **invites, int size);
-void		instruct_the_butler(char **info, int len);
-int			set_table(int total);
-int			accommodate_guests(t_plate **table, int total);
-int			end_dinner(int error);
+void		*start_dinner(void *arg);
+void		stalk_table(t_plate **table, int total);
+int			finish_dinner(int error, int mtx, int thrd);
 
 int			philo_thinking(t_plate *philo);
 int			philo_eating(t_plate *philo);
 int			philo_sleeping(t_plate *philo);
 
+int			accommodate_guests(t_plate **table, int total);
+int			set_table(int total);
+int			validate_invites(char **invites, int size);
+
 time_t		print_status(t_plate *philo, int status);
 time_t		get_time_in_usec(void);
 int			is_dead(t_plate *philo);
-
-void		*start_dinner(void *arg);
-void		stalk_table(t_plate **table, int total);
+int			ratatoui(char *str);
 
 #endif

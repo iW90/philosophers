@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/11 21:50:41 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:10:02 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static void	clean_hashis(t_plate **table, int total)
 	}
 }
 
-int	end_dinner(int error)
+int	finish_dinner(int error, int mtx, int thrd)
 {
 	t_butler	*james;
 
@@ -60,12 +60,37 @@ int	end_dinner(int error)
 	{
 		if (james->table[0])
 		{
-			kill_philos(&james->table[0], james->total_philos);
-			clean_hashis(&james->table[0], james->total_philos);
+			kill_philos(&james->table[0], mtx);
+			clean_hashis(&james->table[0], thrd);
 			free(james->table[0]);
 		}
 		free(james->table);
 	}
 	pthread_mutex_destroy(&james->printer);
 	return (error);
+}
+
+void	stalk_table(t_plate **table, int total)
+{
+	int		i;
+	int		stop;
+
+	stop = 0;
+	while (!stop)
+	{
+		i = -1;
+		while (++i < total)
+		{
+			if (table[i]->end_dinner || is_dead(table[i]))
+			{
+				print_status(table[i], DIED);
+				call_butler()->stop = TRUE;
+				while (--total >= 0)
+					table[total]->end_dinner = TRUE;
+				stop = TRUE;
+				break ;
+			}
+		}
+		usleep(100 * 1000);
+	}
 }

@@ -6,11 +6,28 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:34:26 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/12 16:23:49 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 11:26:49 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int	ratatoui(char *str)
+{
+	unsigned int	number;
+	int				i;
+
+	i = 0;
+	number = 0;
+	while (str[i] && (str[i] >= '0' && str[i] <= '9'))
+	{
+		number = number * 10 + (str[i] - '0');
+		i++;
+	}
+	if (number > INT_MAX)
+		return (-1);
+	return ((int)number);
+}
 
 time_t	get_time_in_usec(void)
 {
