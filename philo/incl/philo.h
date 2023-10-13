@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 11:31:26 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:46:13 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ typedef struct s_plate
 	unsigned int	holding_hashis;
 	unsigned int	total_ate;
 	_Atomic time_t	last_meal;
-	_Atomic int		end_dinner;
 }					t_plate;
 
 typedef struct s_butler

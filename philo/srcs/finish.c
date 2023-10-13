@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 12:01:38 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 12:57:41 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,22 +73,16 @@ int	finish_dinner(int error, int mtx, int thrd)
 void	stalk_table(t_plate **table, int total)
 {
 	int		i;
-	int		stop;
 
-	stop = 0;
-	while (!stop)
+	while (!call_butler()->stop)
 	{
 		i = -1;
 		while (++i < total)
 		{
-			if (is_dead(table[i]) || call_butler()->stop || \
-				table[i]->end_dinner)
+			if (is_dead(table[i]) || call_butler()->stop)
 			{
-				call_butler()->stop = TRUE;
 				print_status(table[i], DIED);
-				while (--total >= 0)
-					table[total]->end_dinner = TRUE;
-				stop = TRUE;
+				call_butler()->stop = TRUE;
 				break ;
 			}
 		}
