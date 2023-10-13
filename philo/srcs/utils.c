@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:34:26 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 11:26:49 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/13 14:25:00 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,19 +50,19 @@ time_t	print_status(t_plate *philo, int status)
 	pthread_mutex_lock(&call_butler()->printer);
 	if (!call_butler()->stop)
 	{
-		printf("%li\t%i ", time / 1000, philo->id + 1);
+		printf("%li %i ", time / 1000, philo->id + 1);
 		if (status == DIED)
-			printf("is dead.\n");
+			printf("is dead\n");
 		if (status == EATING)
-			printf("is eating.\n");
+			printf("is eating\n");
 		if (status == SLEEPING)
-			printf("is sleeping.\n");
+			printf("is sleeping\n");
 		if (status == THINKING)
-			printf("is thinking.\n");
+			printf("is thinking\n");
 		if (status == LEFT_HASHI)
-			printf("has taken a fork.\n");
+			printf("has taken a fork\n");
 		if (status == RIGHT_HASHI)
-			printf("has taken a fork.\n");
+			printf("has taken a fork\n");
 	}
 	pthread_mutex_unlock(&call_butler()->printer);
 	return (time);
