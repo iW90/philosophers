@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 09:47:05 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 11:02:04 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static void	finish_father(t_butler *james, int finish)
 	}
 }
 
-int	finish_dinner(int error, int finish)
+void	finish_dinner(int error, int finish)
 {
 	t_butler	*james;
 
@@ -71,7 +71,7 @@ int	finish_dinner(int error, int finish)
 	}
 	if (james->pids)
 		free(james->pids);
-	return (error);
+	exit (error);
 }
 
 void	clear_sem(void)
@@ -82,22 +82,41 @@ void	clear_sem(void)
 	sem_unlink("/stop_child");
 }
 
-void	stalk_table(t_philo **table, int total)
+void	over_and_out(t_butler *james)
 {
-	int		i;
+	sem_post(james->philo->stop_child);
+	while (TRUE)
+	{
+		if (james->stop)
+			break ;
+	}
+	while (james->philo->holding_hashis)
+	{
+		sem_post(james->forks);
+		james->philo->holding_hashis--;
+	}
+	sem_post(james->printer);
+	pthread_join(james->thread[0], NULL);
+	pthread_join(james->thread[1], NULL);
+	finish_dinner(0, FALSE);
+}
 
+void	stalk_table(t_philo *philo, int total)
+{
 	while (!call_butler()->stop)
 	{
-		i = -1;
-		while (++i < total)
+		if (call_butler()->total_must_eat && \
+			philo->total_ate == call_butler()->total_must_eat)
 		{
-			if (is_dead(table[i]) || call_butler()->stop)
-			{
-				print_status(table[i], "is dead\n");
-				call_butler()->stop = TRUE;
-				break ;
-			}
+			sem_wait(call_butler()->printer);
+			over_and_out(call_butler());
 		}
-		usleep(100 * 1000);
+		else if (is_dead(philo))
+		{
+			sem_wait(call_butler()->printer);
+			printf("%li %i is dead\n", get_time_in_usec() / 1000, philo->id + 1);
+			over_and_out(call_butler());
+		}
+		usleep(1000);
 	}
 }

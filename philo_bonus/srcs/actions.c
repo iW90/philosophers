@@ -6,13 +6,13 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:42:16 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 23:06:55 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 10:35:55 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	hold_hashis(t_philo *philo, int left, int right)
+static int	hold_hashis(t_philo *philo)
 {
 	if (!call_butler()->stop && !philo->holding_hashis)
 	{
@@ -30,7 +30,7 @@ static int	hold_hashis(t_philo *philo, int left, int right)
 	return (0);
 }
 
-static int	drop_hashis(t_philo *philo, int left, int right)
+static int	drop_hashis(t_philo *philo)
 {
 	if (philo->holding_hashis == 2)
 	{
@@ -51,22 +51,21 @@ int	philo_thinking(t_philo *philo)
 	if (call_butler()->stop)
 		return (0);
 	print_status(philo, "is thinking\n");
-	return (hold_hashis(philo, philo->hashis[0], philo->hashis[1]));
+	return (hold_hashis(philo));
 }
 
 int	philo_eating(t_philo *philo)
 {
 	if (call_butler()->stop)
-		return (drop_hashis(philo, philo->hashis[0], philo->hashis[1]));
+		return (drop_hashis(philo));
 	if (philo->holding_hashis == 2)
 	{
 		philo->last_meal = print_status(philo, "is eating\n");
+		philo->total_ate++;
 		usleep(call_butler()->time_to_eat);
-		if (++philo->total_ate == call_butler()->total_must_eat)
-			call_butler()->stop = TRUE;
-		return (drop_hashis(philo, philo->hashis[0], philo->hashis[1]));
+		return (drop_hashis(philo));
 	}
-	drop_hashis(philo, philo->hashis[0], philo->hashis[1]);
+	drop_hashis(philo);
 	usleep(call_butler()->time_to_die + 1000);
 	return (1);
 }

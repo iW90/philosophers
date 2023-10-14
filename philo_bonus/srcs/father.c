@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 23:28:00 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 23:33:52 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 10:02:23 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,13 @@ static void	*wait_child(void *arg)
 	return (NULL);
 }
 
-static int	wait_all(pid_t *pids, int max)
+static int	wait_all(pid_t *pids, int total)
 {
 	int	i;
 	int	status;
 
 	i = -1;
-	while (++i < max)
+	while (++i < total)
 		if (pids[i] > 0)
 			waitpid(pids[i], &status, 0);
 	return (TRUE);
@@ -52,7 +52,7 @@ int	accommodate_guests(t_butler james, int total)
 	{
 		james->pids[i] = fork();
 		if (james->pids[i] < 0)
-			return (finish_dinner(5));
+			finish_dinner(5);
 		else if (james->pids[i] == 0)
 			child_actions(james, total, get_time_in_usec());
 	}

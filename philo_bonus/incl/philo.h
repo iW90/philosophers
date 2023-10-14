@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 23:06:52 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 10:12:30 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ typedef struct s_philo
 	unsigned int	id;
 	unsigned int	holding_hashis;
 	unsigned int	total_ate;
-	_Atomic t_bool	stop;
 	_Atomic time_t	last_meal;
 	sem_t			*stop_child;
 }					t_philo;
 
 typedef struct s_butler
 {
+	_Atomic t_bool	stop;
 	time_t			time_to_die;
 	time_t			time_to_eat;
 	time_t			time_to_sleep;
@@ -62,7 +62,7 @@ typedef struct s_butler
 t_butler	*call_butler(void);
 void		*start_dinner(void *arg);
 void		stalk_table(t_philo **table, int total);
-int			finish_dinner(int error);
+void		finish_dinner(int error, int finish);
 
 int			philo_thinking(t_philo *philo);
 int			philo_eating(t_philo *philo);

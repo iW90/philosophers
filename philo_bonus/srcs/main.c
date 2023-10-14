@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 09:27:29 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 10:12:39 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	main(int ac, char **av)
 	unsigned int	total;
 
 	if (ac < 5 || ac > 6)
-		return (finish_dinner(-1));
+		finish_dinner(-1, FALSE);
 	if (validate_invites(++av, --ac))
 		return (-1);
 	clear_sem();
@@ -74,5 +74,5 @@ int	main(int ac, char **av)
 		return (3);
 	
 	stalk_table(call_butler()->table, total);
-	return (finish_dinner(0));
+	finish_dinner(0, TRUE);
 }
