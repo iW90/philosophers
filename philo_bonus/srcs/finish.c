@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 23:06:57 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 09:47:05 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,32 +30,56 @@ static void	dinner_problems(int error)
 		printf("Butler is not around.\n");
 }
 
-int	finish_dinner(int error)
+static void	finish_father(t_butler *james, int finish)
+{
+	if (james->hashis)
+	{
+		sem_close(james->hashis);
+		if (finish)
+			sem_unlink("/hashis");
+	}
+	if (james->printer)
+	{
+		sem_close(james->printer);
+		if (finish)
+			sem_unlink("/printer");
+	}
+	if (james->stop_father)
+	{
+		sem_close(james->stop_father);
+		if (finish)
+			sem_unlink("/stop_father");
+	}
+}
+
+int	finish_dinner(int error, int finish)
 {
 	t_butler	*james;
 
 	dinner_problems(error);
 	james = call_butler();
-	if (james->table)
+	finish_father(james, finish);
+	if (james->philo)
 	{
-		if (james->table[0])
+		if (james->philo->stop_child)
 		{
-			//fechar forks
-			sem_unlink("/hashis");
-			free(james->table[0]);
+			sem_close(james->stop_child);
+			if (finish)
+				sem_unlink("/stop_child");
 		}
-		free(james->table);
+		free(james->philo)
 	}
-	sem_unlink("/printer");
+	if (james->pids)
+		free(james->pids);
 	return (error);
 }
 
 void	clear_sem(void)
 {
-	sem_unlink("/forks");
-	sem_unlink("/print");
-	sem_unlink("/end");
-	sem_unlink("/philo_done");
+	sem_unlink("/hashis");
+	sem_unlink("/printer");
+	sem_unlink("/stop_father");
+	sem_unlink("/stop_child");
 }
 
 void	stalk_table(t_philo **table, int total)
