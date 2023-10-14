@@ -6,7 +6,7 @@
 #    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/10/13 19:22:41 by inwagner         ###   ########.fr        #
+#    Updated: 2023/10/14 11:03:59 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ CFLAGS		:=	-Wall -Wextra -Werror -g -I $(HDR_DIR)
 FTS			:=	main.c \
 				actions.c \
 				childs.c \
+				father.c \
 				finish.c \
 				parser.c \
 				utils.c \

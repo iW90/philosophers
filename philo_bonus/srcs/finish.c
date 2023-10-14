@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 11:02:04 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 11:23:54 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,18 @@ void	finish_dinner(int error, int finish)
 	{
 		if (james->philo->stop_child)
 		{
-			sem_close(james->stop_child);
+			sem_close(james->philo->stop_child);
 			if (finish)
 				sem_unlink("/stop_child");
 		}
-		free(james->philo)
+		free(james->philo);
 	}
 	if (james->pids)
 		free(james->pids);
 	exit (error);
 }
 
-void	clear_sem(void)
-{
-	sem_unlink("/hashis");
-	sem_unlink("/printer");
-	sem_unlink("/stop_father");
-	sem_unlink("/stop_child");
-}
-
-void	over_and_out(t_butler *james)
+static void	over_and_out(t_butler *james)
 {
 	sem_post(james->philo->stop_child);
 	while (TRUE)
@@ -92,7 +84,7 @@ void	over_and_out(t_butler *james)
 	}
 	while (james->philo->holding_hashis)
 	{
-		sem_post(james->forks);
+		sem_post(james->hashis);
 		james->philo->holding_hashis--;
 	}
 	sem_post(james->printer);
@@ -101,7 +93,7 @@ void	over_and_out(t_butler *james)
 	finish_dinner(0, FALSE);
 }
 
-void	stalk_table(t_philo *philo, int total)
+void	stalk_table(t_philo *philo)
 {
 	while (!call_butler()->stop)
 	{

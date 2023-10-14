@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 23:28:00 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 10:02:23 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 11:22:29 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,20 @@ static int	wait_all(pid_t *pids, int total)
 	return (TRUE);
 }
 
-int	accommodate_guests(t_butler james, int total)
+int	accommodate_guests(t_butler *james, int total)
 {
 	int	proceed;
 
 	proceed = FALSE;
 	while (--total >= 0)
 	{
-		james->pids[i] = fork();
-		if (james->pids[i] < 0)
-			finish_dinner(5);
-		else if (james->pids[i] == 0)
+		james->pids[total] = fork();
+		if (james->pids[total] < 0)
+			finish_dinner(5, TRUE);
+		else if (james->pids[total] == 0)
 			child_actions(james, total, get_time_in_usec());
 	}
-	pthread_create(james->thread[0], NULL, wait_child, james);
+	pthread_create(&james->thread[0], NULL, wait_child, james);
 	while (!proceed)
 		proceed = wait_all(james->pids, james->total_philos);
 	pthread_join(james->thread[0], NULL);

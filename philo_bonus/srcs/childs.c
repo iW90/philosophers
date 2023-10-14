@@ -6,13 +6,35 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 19:22:24 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 11:01:55 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 11:18:27 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*hold_philo(void *arg)
+static int	what_philo_is_doing(t_philo	*philo)
+{
+	if (!call_butler()->stop)
+	{
+		philo_thinking(philo);
+		philo_eating(philo);
+	}
+	if (!call_butler()->stop)
+		philo_sleeping(philo);
+	return (0);
+}
+
+static void	*start_dinner(void *arg)
+{
+	t_philo		*philo;
+
+	philo = (t_philo *)arg;
+	while (!call_butler()->stop)
+		what_philo_is_doing(philo);
+	return (NULL);
+}
+
+static void	*hold_philo(void *arg)
 {
 	t_butler	*james;
 
@@ -30,7 +52,7 @@ void	child_actions(t_butler *james, int id, time_t last_meal)
 		usleep(50);
 	pthread_create(&james->thread[0], NULL, start_dinner, james->philo);
 	pthread_create(&james->thread[1], NULL, hold_philo, james);
-	stalk_table(james);
+	stalk_table(james->philo);
 	pthread_join(james->thread[0], NULL);
 	pthread_join(james->thread[1], NULL);
 	finish_dinner(0, FALSE);

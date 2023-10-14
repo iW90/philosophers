@@ -6,21 +6,23 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 10:12:30 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 11:25:41 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
+# include <fcntl.h>
 # include <pthread.h>
-# include <limits.h>
-# include <unistd.h>
+# include <semaphore.h>
+# include <signal.h>
 # include <stdio.h>
 # include <stdlib.h>
+# include <string.h>
 # include <sys/time.h>
-# include <stdbool.h>
-# include <semaphore.h>
+# include <sys/wait.h>
+# include <unistd.h>
 
 # ifndef INT_MAX
 #  define INT_MAX 2147483647
@@ -49,7 +51,7 @@ typedef struct s_butler
 	time_t			time_to_die;
 	time_t			time_to_eat;
 	time_t			time_to_sleep;
-	unsigned int	total_philos;
+	int				total_philos;
 	unsigned int	total_must_eat;
 	pid_t			*pids;
 	t_philo			*philo;
@@ -60,17 +62,17 @@ typedef struct s_butler
 }					t_butler;
 
 t_butler	*call_butler(void);
-void		*start_dinner(void *arg);
-void		stalk_table(t_philo **table, int total);
+void		stalk_table(t_philo *philo);
 void		finish_dinner(int error, int finish);
 
 int			philo_thinking(t_philo *philo);
 int			philo_eating(t_philo *philo);
 int			philo_sleeping(t_philo *philo);
 
-int			accommodate_guests(t_philo **table, int total);
-int			set_table(int total);
+int			accommodate_guests(t_butler *james, int total);
+int			set_table(t_butler *james);
 int			validate_invites(char **invites, int size);
+void		child_actions(t_butler *james, int id, time_t last_meal);
 
 time_t		print_status(t_philo *philo, char *str);
 time_t		get_time_in_usec(void);
