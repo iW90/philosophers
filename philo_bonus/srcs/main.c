@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 11:26:35 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:20:53 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,5 @@ int	main(int ac, char **av)
 
 	if (accommodate_guests(call_butler(), total))
 		return (3);
-	
-	stalk_table(call_butler()->philo);
 	finish_dinner(0, TRUE);
 }

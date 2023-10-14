@@ -6,12 +6,13 @@
 #    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/10/14 11:03:59 by inwagner         ###   ########.fr        #
+#    Updated: 2023/10/14 20:25:26 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Program name
 NAME		:=	philo_bonus
+RUN			:=	philo_bonus 2 600 150 150 3
 
 # Directories for source, object and libraries
 HDR_DIR		:=	./incl
@@ -57,9 +58,9 @@ val: re
 	@valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes ./${NAME} || echo ""
 
 hel: re
-	@valgrind --tool=helgrind ./${NAME} || echo ""
+	@valgrind --tool=helgrind ./${RUN} || echo ""
 
 drd: re
-	@valgrind --tool=drd ./${NAME} || echo ""
+	@valgrind --tool=drd ./${RUN} || echo ""
 
 .PHONY: all clean fclean re
