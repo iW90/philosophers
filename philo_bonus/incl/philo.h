@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 20:24:29 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:41:29 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ typedef enum e_bool
 
 typedef struct s_philo
 {
-	unsigned int	id;
+	unsigned int			id;
+	unsigned int			total_ate;
 	_Atomic unsigned int	holding_hashis;
-	unsigned int	total_ate;
-	_Atomic time_t	last_meal;
-	sem_t			*stop_child;
-}					t_philo;
+	_Atomic time_t			last_meal;
+	sem_t					*stop_child;
+}							t_philo;
 
 typedef struct s_butler
 {

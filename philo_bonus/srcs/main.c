@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 20:20:53 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/14 20:40:50 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ int	main(int ac, char **av)
 	total = call_butler()->total_philos;
 	if (set_table(call_butler()))
 		return (2);
-
 	if (accommodate_guests(call_butler(), total))
 		return (3);
 	finish_dinner(0, TRUE);
