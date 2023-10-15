@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:42:16 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/15 18:45:46 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/15 20:48:19 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,8 @@ int	philo_eating(t_plate *philo)
 	{
 		philo->last_meal = print_status(philo, "is eating\n");
 		usleep(call_butler()->time_to_eat);
-		philo->total_ate++;
+		if (++philo->total_ate == call_butler()->total_must_eat)
+			call_butler()->all_ate++;
 		return (drop_hashis(philo, philo->hashis[0], philo->hashis[1]));
 	}
 	drop_hashis(philo, philo->hashis[0], philo->hashis[1]);

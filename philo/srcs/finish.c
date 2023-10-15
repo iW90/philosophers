@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   finish.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
+/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/15 18:49:50 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/15 20:52:02 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,25 +70,24 @@ int	finish_dinner(int error, int mtx, int thrd)
 	return (error);
 }
 
-void	stalk_table(t_plate **table, int total)
+void	stalk_table(t_butler *james, t_plate **table, int total)
 {
 	int		i;
 
-	while (!call_butler()->stop)
+	while (!james->stop)
 	{
 		i = -1;
 		while (++i < total)
 		{
-			if (call_butler()->total_must_eat && \
-				call_butler()->total_must_eat == table[i]->total_ate)
+			if (james->total_philos == james->all_ate)
 			{
-				call_butler()->stop = TRUE;
+				james->stop = TRUE;
 				break ;
 			}
-			else if (is_dead(table[i]) || call_butler()->stop)
+			else if (is_dead(table[i]) || james->stop)
 			{
 				print_status(table[i], "died\n");
-				call_butler()->stop = TRUE;
+				james->stop = TRUE;
 				break ;
 			}
 		}

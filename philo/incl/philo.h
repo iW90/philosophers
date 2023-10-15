@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:39 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 15:36:30 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/15 20:54:07 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,20 @@ typedef struct s_plate
 
 typedef struct s_butler
 {
-	t_plate			**table;
-	unsigned int	total_philos;
-	time_t			time_to_die;
-	time_t			time_to_eat;
-	time_t			time_to_sleep;
-	unsigned int	total_must_eat;
-	_Atomic int		stop;
-	pthread_mutex_t	printer;
+	t_plate					**table;
+	unsigned int			total_philos;
+	time_t					time_to_die;
+	time_t					time_to_eat;
+	time_t					time_to_sleep;
+	_Atomic int				stop;
+	_Atomic unsigned int	total_must_eat;
+	_Atomic unsigned int	all_ate;
+	pthread_mutex_t		printer;
 }					t_butler;
 
 t_butler	*call_butler(void);
 void		*start_dinner(void *arg);
-void		stalk_table(t_plate **table, int total);
+void		stalk_table(t_butler *james, t_plate **table, int total);
 int			finish_dinner(int error, int mtx, int thrd);
 
 int			philo_thinking(t_plate *philo);
