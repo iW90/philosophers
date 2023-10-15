@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
+#    By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/10/13 12:55:18 by inwagner         ###   ########.fr        #
+#    Updated: 2023/10/15 18:50:17 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ all: $(NAME)
 
 # Compile Objects
 $(NAME): $(OBJ)
-	@cc $(OBJ) -o $@
+	@cc $(OBJ) -lpthread -o $@
 
 # Make Objects
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c

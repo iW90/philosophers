@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   actions.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/01 20:42:16 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 15:12:28 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/15 18:45:46 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	philo_thinking(t_plate *philo)
 {
 	if (call_butler()->stop)
 		return (0);
+	print_status(philo, "is thinking\n");
 	return (hold_hashis(philo, philo->hashis[0], philo->hashis[1]));
 }
 
@@ -61,8 +62,7 @@ int	philo_eating(t_plate *philo)
 	{
 		philo->last_meal = print_status(philo, "is eating\n");
 		usleep(call_butler()->time_to_eat);
-		if (++philo->total_ate == call_butler()->total_must_eat)
-			call_butler()->stop = TRUE;
+		philo->total_ate++;
 		return (drop_hashis(philo, philo->hashis[0], philo->hashis[1]));
 	}
 	drop_hashis(philo, philo->hashis[0], philo->hashis[1]);
@@ -76,6 +76,5 @@ int	philo_sleeping(t_plate *philo)
 		return (0);
 	print_status(philo, "is sleeping\n");
 	usleep(call_butler()->time_to_sleep);
-	print_status(philo, "is thinking\n");
 	return (0);
 }

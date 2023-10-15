@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   finish.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/21 20:42:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 15:12:34 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/15 18:49:50 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,19 @@ void	stalk_table(t_plate **table, int total)
 		i = -1;
 		while (++i < total)
 		{
-			if (is_dead(table[i]) || call_butler()->stop)
+			if (call_butler()->total_must_eat && \
+				call_butler()->total_must_eat == table[i]->total_ate)
 			{
-				print_status(table[i], "is dead\n");
+				call_butler()->stop = TRUE;
+				break ;
+			}
+			else if (is_dead(table[i]) || call_butler()->stop)
+			{
+				print_status(table[i], "died\n");
 				call_butler()->stop = TRUE;
 				break ;
 			}
 		}
-		usleep(100 * 1000);
+		usleep(1000);
 	}
 }

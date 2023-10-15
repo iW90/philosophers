@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/13 12:45:33 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/15 18:48:38 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static int	what_philo_is_doing(t_plate	*philo)
 	}
 	if (!call_butler()->stop)
 		philo_sleeping(philo);
+	if (philo->id % 2 == 0)
+		usleep(900);
 	return (0);
 }
 
@@ -51,6 +53,8 @@ void	*start_dinner(void *arg)
 	t_plate		*philo;
 
 	philo = (t_plate *)arg;
+	if (philo->id % 2 == 1)
+		usleep(50 * 1000);
 	while (!call_butler()->stop)
 		what_philo_is_doing(philo);
 	return (NULL);
