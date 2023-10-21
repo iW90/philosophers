@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/19 19:59:17 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 20:40:50 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/21 13:20:39 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ static void	inform_butler(char **info, int len)
 	james->time_to_eat = ratatoui(info[2]) * 1000;
 	james->time_to_sleep = ratatoui(info[3]) * 1000;
 	if (len == 5)
-		james->total_must_eat = ratatoui(info[4]);
+		james->total_must_eat = ratatoui(info[4]) + 1;
 	else
 		james->total_must_eat = 0;
 }

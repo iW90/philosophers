@@ -6,7 +6,7 @@
 /*   By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 23:28:00 by inwagner          #+#    #+#             */
-/*   Updated: 2023/10/14 11:22:29 by inwagner         ###   ########.fr       */
+/*   Updated: 2023/10/21 13:28:31 by inwagner         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ static void	*wait_child(void *arg)
 
 	i = -1;
 	james = (t_butler *)arg;
+	usleep(900);
 	sem_wait(james->philo->stop_child);
 	while (++i < james->total_philos)
 		kill(james->pids[i], SIGSTOP);

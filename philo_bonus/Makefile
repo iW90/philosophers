@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: inwagner <inwagner@student.42.fr>          +#+  +:+       +#+         #
+#    By: inwagner <inwagner@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/09/19 19:56:43 by inwagner          #+#    #+#              #
-#    Updated: 2023/10/15 18:50:30 by inwagner         ###   ########.fr        #
+#    Updated: 2023/10/21 13:40:26 by inwagner         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Program name
 NAME		:=	philo_bonus
-RUN			:=	philo_bonus 2 600 150 150 3
+RUN			:=	philo_bonus 5 800 200 200 5
 
 # Directories for source, object and libraries
 HDR_DIR		:=	./incl
