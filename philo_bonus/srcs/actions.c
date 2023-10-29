@@ -37,8 +37,7 @@ static int	drop_hashis(t_philo *philo)
 		sem_post(call_butler()->hashis);
 		philo->holding_hashis--;
 	}
-	if (philo->holding_hashis == 1 && \
-		call_butler()->total_philos > 1)
+	if (philo->holding_hashis == 1)
 	{
 		sem_post(call_butler()->hashis);
 		philo->holding_hashis--;

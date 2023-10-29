@@ -37,8 +37,7 @@ static int	drop_hashis(t_plate *philo, int left, int right)
 		pthread_mutex_unlock(&philo->hashi[right]);
 		philo->holding_hashis--;
 	}
-	if (philo->holding_hashis == 1 && \
-		call_butler()->total_philos > 1)
+	if (philo->holding_hashis == 1)
 	{
 		pthread_mutex_unlock(&philo->hashi[left]);
 		philo->holding_hashis--;
