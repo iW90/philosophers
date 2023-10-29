@@ -5,7 +5,7 @@
 **Philosophers** é um programa desenvolvido em torno do famoso problema dos filósofos gastronômicos de _Edsger Dijkstra_, que se passa em uma mesa de jantar. O foco da parte mandatória é encontrar uma solução utilizando apenas threads e mutexes, e com isso aprendemos a gerenciar threads que estejam acontecendo simultaneamente. Já no bônus, deve ser desenvolvido um segundo programa, baseado em semáforos, onde lidaremos com processos simultâneos.
 
 
-## O Jantar dos Filósofos <img src="https://img.shields.io/badge/GRADE-101%2F100-fail?logo=42&logoColor=fff&color=f00" align="right"/>
+## O Jantar dos Filósofos <img src="https://img.shields.io/badge/GRADE-125%2F100-success?logo=42&logoColor=fff" align="right"/>
 
 É um problema clássico da computação proposto por **Edsger W. Dijkstra** em 1965. Esse problema ilustra os desafios de concorrência e sincronização em sistemas multi-threading.
 
@@ -37,3 +37,55 @@ Argumentos:
 - Todos os garfos são colocados no centro da mesa.
 - Eles não têm estados na memória, mas o número de garfos disponíveis é representado por um semáforo.
 - Cada filósofo deve ser um processo (fork). No entanto, o processo principal não deve ser um filósofo.
+
+## Compilação e Execução
+
+#### Mandatório
+
+Para compilar, entre na pasta `philo` e execute o comando:
+
+```
+make
+```
+
+#### Bônus
+
+Entre na pasta `philo_bonus` e execute o comando:
+
+```
+make
+```
+
+### Execução
+
+#### Mandatório
+
+Basta executar o arquivo `philo` que foi gerado após a compilação e na frente colocar os valores referentes à:
+
+- Quantidade de filósofos (de 1 a 200);
+- Tempo máximo que ele aguenta ficar sem comer antes de morrer (em ms);
+- Tempo que ele leva para comer (em ms);
+- Tempo que ele leva para dormir (em ms);
+- \[opcional] Quantidade de vezes que cada filósofo deve se alimentar antes de encerrar a simulação;
+
+```
+./philo 5 800 200 200 7
+```
+
+#### Bônus
+
+Execute o arquivo `philo_bonus` que foi gerado após a compilação e na frente colocar os valores referentes à:
+
+- Quantidade de filósofos (de 1 a 200);
+- Tempo máximo que ele aguenta ficar sem comer antes de morrer (em ms);
+- Tempo que ele leva para comer (em ms);
+- Tempo que ele leva para dormir (em ms);
+- \[opcional] Quantidade de vezes que cada filósofo deve se alimentar antes de encerrar a simulação;
+
+```
+./philo_bonus 5 800 200 200 7
+```
+
+## Visualização
+
+\[soon]
